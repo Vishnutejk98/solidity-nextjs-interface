@@ -8,13 +8,15 @@ import { useRouter } from "next/router";
 function Activity() {
   const { isConnected, address } = useAccount();
   const router = useRouter();
-  const [rewardCount, setRewardCount] = useState("");
+  const [rewardCount, setRewardCount] = useState(0);
   const [rewardDetails, setRewardDetails] = useState();
 
   useEffect(() => {
     async function fetchData() {
-      setRewardCount(await getRewardsCount(address));
-      setRewardDetails(await getAllRewards(address, rewardCount));
+      const count = await getRewardsCount(address);
+      setRewardCount(count);
+      console.log(rewardCount);
+      setRewardDetails(await getAllRewards(address, count));
     }
     if (!isConnected) {
       router.replace("/");
@@ -35,26 +37,33 @@ function Activity() {
       {rewardCount == 0 ? (
         <h1>We didn't find any rewards! Learn more to earn more </h1>
       ) : (
-        <table className="table">
-          <thead>
-            <tr>
-              <th scope="col">Activity</th>
-              <th scope="col">Amount</th>
-              <th scope="col">Time</th>
-            </tr>
-          </thead>
-          <tbody>
-            {rewardDetails.map((e) => {
-              return (
-                <tr>
-                  <td>{e.activity}</td>
-                  <td>{e.amount}</td>
-                  <td>{e.time}</td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
+        <>
+          <h1>Keep Learning and Earning!</h1>
+          <br />
+          <h2>
+            <u>Your rewards</u> : Total Rewards Count - {rewardCount}
+          </h2>
+          <table className="table">
+            <thead>
+              <tr>
+                <th scope="col">Activity</th>
+                <th scope="col">Amount</th>
+                <th scope="col">Time</th>
+              </tr>
+            </thead>
+            <tbody>
+              {rewardDetails?.map((e) => {
+                return (
+                  <tr>
+                    <td>{e.activity}</td>
+                    <td>{e.amount}</td>
+                    <td>{e.time}</td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </>
       )}
       <div className="card">
         <div className="card-body">

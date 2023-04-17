@@ -16,7 +16,9 @@ async function getRewardsCount(address) {
 }
 
 async function getAllRewards(address, count) {
-  console.log("hello");
+  console.log("hello-reward");
+  console.log(address);
+  console.log(count);
   var response = [];
   for (var i = 0; i < count; i++) {
     const { activity, amount, time } = await contract.methods
@@ -25,13 +27,14 @@ async function getAllRewards(address, count) {
     var utcSeconds = time;
     var d = new Date(0); // The 0 there is the key, which sets the date to the epoch
     d.setUTCSeconds(utcSeconds);
+    console.log(activity);
     response.push({
       activity: activity,
       amount: web3.utils.fromWei(amount, "ether"),
       time: d.toDateString() + " (" + d.toLocaleTimeString() + ")",
     });
   }
-
+  console.log(response);
   return response;
 }
 
