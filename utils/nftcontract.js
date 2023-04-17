@@ -10,6 +10,9 @@ async function getNFTTokenIDForWalletAddress(address) {
   try {
     var { currentTotalSupply, minterNumMinted, maxSupply } =
       await contract.methods.getMintStats(address).call();
+    if (minterNumMinted == 0) {
+      minterNumMinted = "NFT_NOT_FOUND";
+    }
   } catch {
     minterNumMinted = "NFT_NOT_FOUND";
   }
