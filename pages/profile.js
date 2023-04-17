@@ -17,7 +17,7 @@ import { useRouter } from "next/router";
 
 function ProfilePgae() {
   const { isConnected, address } = useAccount();
-  const [currentTotalSupply, setCurrentTotalSupply] = useState();
+  const [minterNumMinted, setMinterNumMinted] = useState();
   const [NFTTokenIdDetails, setNFTTokenIdDetails] = useState();
   const [balance, setBalance] = useState();
 
@@ -27,11 +27,11 @@ function ProfilePgae() {
       let NFTTokenIdDetails = "NFT_NOT_FOUND";
       const { currentTotalSupply, minterNumMinted, maxSupply } =
         await getNFTTokenIDForWalletAddress(address);
-      console.log(currentTotalSupply);
-      setCurrentTotalSupply(currentTotalSupply);
+      console.log(minterNumMinted);
+      setMinterNumMinted(minterNumMinted);
       setBalance(await getSTKBalance(address));
-      if (currentTotalSupply != "NFT_NOT_FOUND") {
-        setNFTTokenIdDetails(await getNFTMetadata(currentTotalSupply));
+      if (minterNumMinted != "NFT_NOT_FOUND") {
+        setNFTTokenIdDetails(await getNFTMetadata(minterNumMinted));
       }
     }
     console.log(isConnected);
@@ -53,7 +53,7 @@ function ProfilePgae() {
         />
       </Head>
       <div className="row">
-        {currentTotalSupply == "NFT_NOT_FOUND" ? (
+        {minterNumMinted == "NFT_NOT_FOUND" ? (
           <div className="col-sm-12 mb-2">
             <div className="card">
               <div className="card-body">
