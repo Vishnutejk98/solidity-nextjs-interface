@@ -82,6 +82,18 @@ function Navbar() {
               </li>
               <li>
                 <Link
+                  href="/allparticipants"
+                  className={
+                    router.pathname == "/allparticipants"
+                      ? "nav-link px-2 link-secondary"
+                      : "nav-link px-2 link-dark"
+                  }
+                >
+                  All Participants
+                </Link>
+              </li>
+              <li>
+                <Link
                   href="/about"
                   className={
                     router.pathname == "/about"

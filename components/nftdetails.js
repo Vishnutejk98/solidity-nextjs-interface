@@ -31,7 +31,7 @@ function NftDetails({ details }) {
             </tbody>
           </table>
         </div>
-        <div className="col-sm-4 text-center">
+        <div className="col-sm-4 text-right">
           <Image src={details?.image} width={250} height={250} />
           <p class="h6">NFT </p>
         </div>
