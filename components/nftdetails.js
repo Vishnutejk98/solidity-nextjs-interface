@@ -4,7 +4,14 @@ function NftDetails({ details }) {
     <>
       <div className="row">
         <div className="col-sm-8">
-          <table class="table table-bordered">
+          <table
+            class="table table-bordered"
+            style={{
+              tableLayout: "fixed",
+              width: "100%",
+              wordBreak: "break-all",
+            }}
+          >
             <thead>
               <tr>
                 <th scope="col">Attribute</th>
@@ -31,7 +38,7 @@ function NftDetails({ details }) {
             </tbody>
           </table>
         </div>
-        <div className="col-sm-4 text-right">
+        <div className="col-sm-4 text-center">
           <Image src={details?.image} width={250} height={250} />
           <p class="h6">NFT </p>
         </div>
