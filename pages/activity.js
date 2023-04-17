@@ -44,7 +44,7 @@ function Activity() {
             </tr>
           </thead>
           <tbody>
-            {rewardDetails?.map((e) => {
+            {rewardDetails.map((e) => {
               return (
                 <tr>
                   <td>{e.activity}</td>

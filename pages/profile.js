@@ -17,7 +17,7 @@ import { useRouter } from "next/router";
 
 function ProfilePgae() {
   const { isConnected, address } = useAccount();
-  const [minterNumMinted, setMinterNumMinted] = useState();
+  const [minterNumMinted, setMinterNumMinted] = useState("FETCHING_DATA");
   const [NFTTokenIdDetails, setNFTTokenIdDetails] = useState();
   const [balance, setBalance] = useState();
 
@@ -53,7 +53,19 @@ function ProfilePgae() {
         />
       </Head>
       <div className="row">
-        {minterNumMinted == "NFT_NOT_FOUND" ? (
+        {minterNumMinted == "FETCHING_DATA" ? (
+          <Typewriter
+            onInit={(typewriter) => {
+              typewriter
+                .typeString("Fetching NFT Details... Please wait!")
+                .callFunction(() => {
+                  console.log("String typed out!");
+                })
+                .pauseFor(2500)
+                .start();
+            }}
+          />
+        ) : minterNumMinted == "NFT_NOT_FOUND" ? (
           <div className="col-sm-12 mb-2">
             <div className="card">
               <div className="card-body">
