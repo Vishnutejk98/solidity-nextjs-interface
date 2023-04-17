@@ -1,1 +1,8 @@
-/* eslint-disable */
+    {
+        "env": {},
+        "extends": [],
+        "parser": "",
+        "plugins": [],
+        "rules": {},
+        "settings": {}
+    }
